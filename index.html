@@ -29,12 +29,18 @@ h1,h2,h3{font-family:Gloock,Georgia,serif;font-weight:400;margin:0;line-height:1
 a{color:var(--acc)}
 /* arka plan: odalar, kaydırdıkça değişir */
 .sahne{position:fixed;inset:0;z-index:0;overflow:hidden}
-.kat{position:absolute;inset:-4%;background-size:cover;background-position:center 35%;opacity:0;transition:opacity 1.4s ease;transform:scale(1.04);animation:nefes 26s ease-in-out infinite alternate}
+.kat{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
 .kat.on{opacity:1}
-@keyframes nefes{from{transform:scale(1.04) translateY(0)}to{transform:scale(1.12) translateY(-1.5%)}}
+.kat::before,.kat::after{content:"";position:absolute;background-image:var(--img);background-repeat:no-repeat}
+/* yanları dolduran yumuşak, bulanık kopya */
+.kat::before{inset:-60px;background-size:cover;background-position:center;filter:blur(34px) brightness(.5) saturate(1.1)}
+/* odanın kendisi: geniş ekranda tamamı görünür, büyütülmez */
+.kat::after{top:0;bottom:0;right:3vw;width:max(58vw,48vh);background-size:cover;background-position:center 35%;animation:nefes 28s ease-in-out infinite alternate;transform-origin:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%)}
+@keyframes nefes{from{transform:scale(1)}to{transform:scale(1.035)}}
+@media (max-aspect-ratio:11/16){.kat::before{display:none}.kat::after{inset:0;width:auto;background-position:center 30%;-webkit-mask-image:none;mask-image:none}}
 .perde{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,9,5,.86) 0%,rgba(14,9,5,.62) 42%,rgba(14,9,5,.35) 100%)}
 #toz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-@media (max-width:860px){.perde{background:linear-gradient(180deg,rgba(14,9,5,.55),rgba(14,9,5,.78) 55%,rgba(14,9,5,.9))}.kat{background-position:center 30%}}
+@media (max-width:860px){.perde{background:linear-gradient(180deg,rgba(14,9,5,.55),rgba(14,9,5,.78) 55%,rgba(14,9,5,.9))}}
 /* üst */
 .ust{position:fixed;left:0;right:0;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:max(12px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) 10px max(18px,env(safe-area-inset-left));background:rgba(14,9,5,.5);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid rgba(255,236,210,.08)}
 .marka{font-family:Gloock,serif;font-size:21px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
@@ -109,15 +115,15 @@ footer a{color:var(--soft)}
 </head>
 <body>
 <div class="sahne" aria-hidden="true">
-  <div class="kat on" data-k="cagdas" style="background-image:url(oda/oda-01-cagdas-1.jpg)"></div>
-  <div class="kat" data-k="korku" style="background-image:url(oda/oda-03-korku-1.jpg)"></div>
-  <div class="kat" data-k="tarih" style="background-image:url(oda/oda-08-tarih-1.jpg)"></div>
-  <div class="kat" data-k="bilimkurgu" style="background-image:url(oda/oda-07-bilimkurgu-1.jpg)"></div>
-  <div class="kat" data-k="deneme" style="background-image:url(oda/oda-06-deneme-2.jpg)"></div>
-  <div class="kat" data-k="siir" style="background-image:url(oda/oda-09-siir-1.jpg)"></div>
-  <div class="kat" data-k="odunc" style="background-image:url(oda/oda-11-odunc-1.jpg)"></div>
-  <div class="kat" data-k="tasavvuf" style="background-image:url(oda/oda-05-tasavvuf-1.jpg)"></div>
-  <div class="kat" data-k="bos" style="background-image:url(oda/oda-12-bos-1.jpg)"></div>
+  <div class="kat on" data-k="cagdas" data-img="oda/oda-01-cagdas-1.jpg"></div>
+  <div class="kat" data-k="korku" data-img="oda/oda-03-korku-1.jpg"></div>
+  <div class="kat" data-k="tarih" data-img="oda/oda-08-tarih-1.jpg"></div>
+  <div class="kat" data-k="bilimkurgu" data-img="oda/oda-07-bilimkurgu-1.jpg"></div>
+  <div class="kat" data-k="deneme" data-img="oda/oda-06-deneme-2.jpg"></div>
+  <div class="kat" data-k="siir" data-img="oda/oda-09-siir-1.jpg"></div>
+  <div class="kat" data-k="odunc" data-img="oda/oda-11-odunc-1.jpg"></div>
+  <div class="kat" data-k="tasavvuf" data-img="oda/oda-05-tasavvuf-1.jpg"></div>
+  <div class="kat" data-k="bos" data-img="oda/oda-12-bos-1.jpg"></div>
   <div class="perde"></div>
   <canvas id="toz"></canvas>
 </div>
@@ -302,12 +308,15 @@ footer a{color:var(--soft)}
   setTod(tod);
 
   // kaydırdıkça oda ve ekran değişir
-  var kats = {}; document.querySelectorAll('.kat').forEach(function (k) { kats[k.dataset.k] = k; });
+  var kats = {}, order = []; document.querySelectorAll('.kat').forEach(function (k) { kats[k.dataset.k] = k; order.push(k.dataset.k); });
+  function load(n) { var k = kats[n]; if (k && !k.style.getPropertyValue('--img')) k.style.setProperty('--img', 'url(' + k.dataset.img + ')'); }
+  load(order[0]);
   var shots = {}; document.querySelectorAll('#ekran [data-ek]').forEach(function (s) { shots[s.dataset.ek] = s; });
   var saat = document.getElementById('saatler'), cur = null;
   function show(sec) {
     if (sec === cur) return; cur = sec;
     var o = sec.dataset.oda, k = sec.dataset.ek;
+    load(o); var i = order.indexOf(o); load(order[i + 1]); load(order[i - 1]);
     for (var n in kats) kats[n].classList.toggle('on', n === o);
     for (var m in shots) shots[m].classList.toggle('on', m === k);
     saat.classList.toggle('gizli', k !== 'canli');
