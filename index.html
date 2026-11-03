@@ -139,7 +139,89 @@ footer a{color:var(--soft)}
  .saatler.m{margin:14px auto 0;width:max-content}
 }
 @media (prefers-reduced-motion:reduce){.kat{animation:none}html{scroll-behavior:auto}}
+
+/* ===== açık tema (kâğıt rengi): html[data-tema="acik"] ===== */
+html[data-tema="acik"]{--ink:#2b1d12;--soft:rgba(43,29,18,.82);--mute:rgba(43,29,18,.6);--acc:#a8561c;--bg:#f4ecdf;--card:rgba(255,252,246,.9);--line:rgba(80,50,20,.14)}
+html[data-tema="acik"] .sahne{background:radial-gradient(1100px 700px at 78% 18%,#fcf7ee 0,transparent 70%),radial-gradient(900px 600px at 8% 92%,#ecdcc4 0,transparent 70%),#f4ecdf}
+@media (min-width:861px){html[data-tema="acik"] .kat{display:none}
+html[data-tema="acik"] .perde{background:none}}
+html[data-tema="acik"] .ust{background:rgba(250,244,234,.8);border-bottom:1px solid var(--line)}
+html[data-tema="acik"] .marka{color:var(--ink)}
+html[data-tema="acik"] .dil{color:var(--ink);background:rgba(255,255,255,.7);border:1px solid var(--line)}
+html[data-tema="acik"] .kart{background:var(--card);box-shadow:0 30px 80px rgba(80,50,20,.14);border-color:var(--line)}
+html[data-tema="acik"] .kart .giris{color:var(--ink);opacity:.9}
+html[data-tema="acik"] .bolum h2,html[data-tema="acik"] .bolum>p{text-shadow:none}
+html[data-tema="acik"] .rozet{background:rgba(255,255,255,.75);border-color:var(--line);color:var(--soft)}
+html[data-tema="acik"] .magaza{background:#2b1d12;color:#fbf4e8}
+html[data-tema="acik"] .madde li{background:var(--card);color:var(--ink);box-shadow:0 10px 26px rgba(80,50,20,.07)}
+html[data-tema="acik"] .fark{background:var(--card);box-shadow:0 10px 26px rgba(80,50,20,.07)}
+html[data-tema="acik"] .tablo{box-shadow:0 40px 90px rgba(60,35,15,.38),0 0 0 9px #3a2616,0 0 0 10px rgba(0,0,0,.25)}
+html[data-tema="acik"] .saatler{background:rgba(20,12,7,.62);border-color:rgba(255,236,210,.18)}
+html[data-tema="acik"] .saatler button{color:rgba(251,244,232,.82)}
+html[data-tema="acik"] .saatler button.on{background:#fbf4e8;color:#20140b}
+html[data-tema="acik"] .kaydir{color:var(--mute)}
+@media (max-width:860px){html[data-tema="acik"] .perde{background:linear-gradient(180deg,rgba(244,236,223,.35),rgba(244,236,223,.82) 42%,rgba(244,236,223,.95))!important}
+html[data-tema="acik"] .kahraman .kart{background:rgba(255,252,246,.9)}}
+.ustsag{display:flex;gap:8px;align-items:center}
+html:not([data-tema="acik"]) .tara{background:linear-gradient(160deg,#2a1c12,#170f09);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px var(--line)}
+html:not([data-tema="acik"]) .tara-alt span{background:rgba(255,255,255,.08);color:var(--soft)}
+html:not([data-tema="acik"]) .tara-alt span.on{background:#fbf4e8;color:#20140b;border-color:#fbf4e8}
+html:not([data-tema="acik"]) .tk{box-shadow:16px 22px 40px rgba(0,0,0,.5),inset 10px 0 0 rgba(0,0,0,.16),inset 13px 0 0 rgba(255,255,255,.08)}
+.tema{width:40px;height:38px;padding:0;display:grid;place-items:center;font-size:17px;line-height:1}
+/* aynı oda, üç saat */
+.saat3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:580px;margin:24px 0 8px}
+.saat3 figure{margin:0;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:480/720;box-shadow:0 16px 40px rgba(60,35,15,.22),0 0 0 1px var(--line)}
+.saat3 img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.saat3 figcaption{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);background:rgba(20,12,7,.72);color:#fbf4e8;padding:5px 12px;border-radius:999px;font:600 13px Onest,sans-serif;white-space:nowrap}
+.saat3-not{font-size:15px!important;color:var(--mute)!important}
+.bolum>.saat3,.bolum>.tara{align-self:stretch}
+/* barkod sahnesi: kitap + telefon */
+.tara{position:relative;max-width:600px;margin:26px 0 22px;border-radius:26px;background:linear-gradient(160deg,#fffaf2,#efe2cc);box-shadow:0 24px 60px rgba(80,50,20,.16),0 0 0 1px var(--line);overflow:hidden}
+.tara-bas{display:flex;align-items:center;gap:10px;padding:16px 20px 0;font:600 12.5px Onest,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+.tara-bas i{width:8px;height:8px;border-radius:50%;background:#c6403a;box-shadow:0 0 0 4px rgba(198,64,58,.18);animation:nab 1.4s infinite}
+@keyframes nab{50%{opacity:.35}}
+.tara-sahne{position:relative;height:var(--th,420px)}
+.tara-ic{position:absolute;left:0;top:0;width:600px;height:420px;transform-origin:0 0;transform:scale(var(--ts,1))}
+.tk{position:absolute;left:62px;top:46px;width:200px;height:296px;border-radius:5px 12px 12px 5px;background:var(--kr,#7a2e2a);transform:rotate(-7deg);box-shadow:16px 22px 40px rgba(60,30,10,.32),inset 10px 0 0 rgba(0,0,0,.16),inset 13px 0 0 rgba(255,255,255,.08);transition:background .6s,opacity .5s}
+.tk-on{position:absolute;inset:18px 16px 18px 26px;display:flex;flex-direction:column;color:rgba(255,248,236,.92)}
+.tk-ad{font-family:Gloock,serif;font-size:21px;line-height:1.1}
+.tk-yz{font-size:12.5px;opacity:.8;margin-top:6px}
+.tk-ozet{display:flex;flex-direction:column;gap:6px;margin-top:16px}.tk-ozet i{display:block;height:3px;border-radius:2px;background:rgba(255,248,236,.32);width:100%}
+.tk-bar{margin-top:auto;align-self:flex-end;background:#fff;border-radius:3px;padding:6px 7px 3px;width:124px}
+.tk-bar svg{display:block;width:100%;height:42px}
+.tk-bar small{display:block;font:600 7px/1.4 Onest,monospace;color:#222;text-align:center;letter-spacing:.02em;white-space:nowrap}
+.tt{position:absolute;left:350px;top:26px;width:170px;height:350px;border-radius:30px;padding:8px;background:linear-gradient(145deg,#2c2118,#0e0905);box-shadow:0 30px 60px rgba(40,20,5,.4),inset 0 0 0 1.5px rgba(255,255,255,.12);transform:rotate(5deg);transition:transform 1s cubic-bezier(.5,0,.2,1);z-index:2}
+.tara.yak .tt{transform:translate(-118px,40px) rotate(-4deg)}
+.tt::before{content:"";position:absolute;left:50%;top:13px;transform:translateX(-50%);width:56px;height:15px;border-radius:9px;background:#000;z-index:3}
+.tt-ek{position:relative;width:100%;height:100%;border-radius:23px;overflow:hidden;background:#111}
+.tt-kam{position:absolute;inset:0;background:radial-gradient(circle at 50% 55%,var(--kr2,#5a2220),#1a0e0a 80%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .35s}
+.tt-kam .yazi{position:absolute;top:36px;left:0;right:0;text-align:center;font:600 11px Onest,sans-serif;color:rgba(255,255,255,.85)}
+.tt-cer{position:relative;width:128px;height:92px;background:#fff;border-radius:6px;display:flex;flex-direction:column;justify-content:center;padding:8px 10px;box-shadow:0 0 0 999px rgba(0,0,0,.35)}
+.tt-cer svg{width:100%;height:54px;display:block}
+.tt-cer::before,.tt-cer::after{content:"";position:absolute;inset:-9px;border:2.5px solid #fff;border-radius:10px;-webkit-mask:linear-gradient(#000 0 0) top left/18px 18px no-repeat,linear-gradient(#000 0 0) top right/18px 18px no-repeat,linear-gradient(#000 0 0) bottom left/18px 18px no-repeat,linear-gradient(#000 0 0) bottom right/18px 18px no-repeat;mask:linear-gradient(#000 0 0) top left/18px 18px no-repeat,linear-gradient(#000 0 0) top right/18px 18px no-repeat,linear-gradient(#000 0 0) bottom left/18px 18px no-repeat,linear-gradient(#000 0 0) bottom right/18px 18px no-repeat}
+.tt-cer::after{display:none}
+.lazer{position:absolute;left:-6px;right:-6px;top:50%;height:2px;background:#ff3b30;box-shadow:0 0 10px 2px rgba(255,59,48,.7);opacity:0}
+.tara.tar .lazer{opacity:1;animation:lazer 1.1s ease-in-out 1}
+@keyframes lazer{0%{top:12%}50%{top:88%}100%{top:50%}}
+.tt-flas{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:4}
+.tara.bul .tt-flas{animation:flas .45s ease-out 1}
+@keyframes flas{0%{opacity:.85}100%{opacity:0}}
+.tt-son{position:absolute;inset:0;background:#f6f3ee;padding:38px 12px 12px;opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s;color:#2b1d12}
+.tara.bul .tt-son{opacity:1;transform:none}
+.tara.bul .tt-kam{opacity:0}
+.tt-son .k{font:600 8.5px Onest,sans-serif;letter-spacing:.16em;color:#8a7a6a}
+.tt-son .h{font-family:Gloock,serif;font-size:19px;line-height:1.1;margin:2px 0 12px}
+.tt-kart{border-radius:14px;padding:11px 11px 12px;background:var(--sb,#e4efdf);color:var(--sc,#1f4d2b)}
+.tt-kart b{display:block;font-family:Gloock,serif;font-weight:400;font-size:20px;line-height:1.05}
+.tt-kart .a{display:block;font-weight:600;font-size:11.5px;margin-top:7px}
+.tt-kart .s{display:block;font-size:10.5px;margin-top:3px;opacity:.85}
+.tt-kart .d{display:inline-block;margin-top:9px;font:600 10px Onest,sans-serif;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.65)}
+.tara-alt{display:flex;gap:8px;flex-wrap:wrap;padding:0 20px 18px}
+.tara-alt span{font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line);color:var(--soft);transition:background .3s,color .3s}
+.tara-alt span.on{background:#2b1d12;color:#fbf4e8;border-color:#2b1d12}
+@media (prefers-reduced-motion:reduce){.tt,.lazer{transition:none;animation:none!important}}
 </style>
+<script>(function(){var t=null;try{t=localStorage.getItem('kl-tema')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'koyu':'acik';document.documentElement.dataset.tema=t;})();</script>
 </head>
 <body>
 <div class="sahne" aria-hidden="true">
@@ -159,7 +241,7 @@ footer a{color:var(--soft)}
 
 <header class="ust">
   <a class="marka" href="#ust"><img src="icon-192.png" alt="" width="32" height="32">Başar! <span data-en="Library">Kitaplık</span></a>
-  <button class="dil" id="dil" type="button">English</button>
+  <div class="ustsag"><button class="dil tema" id="tema" type="button" aria-label="Açık / koyu"></button><button class="dil" id="dil" type="button">English</button></div>
 </header>
 
 <main id="ust">
@@ -194,6 +276,12 @@ footer a{color:var(--soft)}
       <li data-en="&lt;b&gt;Morning, evening, night.&lt;/b&gt; Rooms follow your phone's clock. At night candles and oil lamps really light up the room." style="--li:#e9a35a"><b>Sabah, akşam, gece.</b> Odalar telefonunun saatine göre değişir; gece mumlar ve gaz lambaları odayı gerçekten aydınlatır.</li>
       <li data-en="&lt;b&gt;Prefer it simple?&lt;/b&gt; Switch to plain shelves or a cover grid any time." style="--li:#8fb3c9"><b>Sade mi seversin?</b> İstersen odaları kapat, sade raflar ya da kapak ızgarası kullan.</li>
     </ul>
+    <div class="saat3">
+      <figure><img loading="lazy" src="oda/saat-g.jpg" alt="Gündüz" data-alt-en="Day"><figcaption data-en="Day">Gündüz</figcaption></figure>
+      <figure><img loading="lazy" src="oda/saat-a.jpg" alt="Akşam" data-alt-en="Evening"><figcaption data-en="Evening">Akşam</figcaption></figure>
+      <figure><img loading="lazy" src="oda/saat-n.jpg" alt="Gece" data-alt-en="Night"><figcaption data-en="Night">Gece</figcaption></figure>
+    </div>
+    <p class="saat3-not" data-en="Same room, three times of day. It follows your phone’s clock, or pick the one you like in Settings.">Aynı oda, günün üç saati. Telefonunun saatine uyar; istersen Ayarlar’dan sevdiğini seçersin.</p>
     <div class="mtel"><div class="tel"><div class="cenk"></div><div class="ekran"><img loading="lazy" src="ek/oda-gece_tr.jpg" data-src-en="ek/oda-gece_en.jpg" alt="Gece odası" data-alt-en="Room at night"></div></div></div>
   </section>
 
@@ -214,6 +302,18 @@ footer a{color:var(--soft)}
     <span class="etiket" data-en="Adding books">Kitap eklemek</span>
     <h2 data-en="Scan the barcode, done">Barkodu okut, bitti</h2>
     <p data-en="Tap the middle button and scan the barcode on the back. The title, author, page count and cover arrive; the book goes to the right room by itself.">Ortadaki düğmeye bas, kitabın arkasındaki barkodu okut. Adı, yazarı, sayfa sayısı ve kapağı gelir; kitap kendi odasının rafına kendiliğinden geçer.</p>
+    <div class="tara" id="tara">
+      <div class="tara-bas"><i></i><span data-en="In the bookshop: do I own this?">Kitapçıda: bende var mı?</span></div>
+      <div class="tara-sahne"><div class="tara-ic">
+        <div class="tk"><div class="tk-on"><span class="tk-ad"></span><span class="tk-yz"></span><span class="tk-ozet"><i></i><i></i><i></i><i style="width:62%"></i></span><div class="tk-bar"><svg viewBox="0 0 100 40" preserveAspectRatio="none"></svg><small></small></div></div></div>
+        <div class="tt"><div class="tt-ek">
+          <div class="tt-kam"><span class="yazi" data-en="Point at the barcode">Barkodu çerçeveye getir</span><div class="tt-cer"><svg viewBox="0 0 100 40" preserveAspectRatio="none"></svg><div class="lazer"></div></div></div>
+          <div class="tt-son"><div class="k" data-en="IN THE BOOKSHOP">KİTAPÇIDA</div><div class="h" data-en="Do I own this?">Bende var mı?</div><div class="tt-kart"><b></b><span class="a"></span><span class="s"></span><span class="d"></span></div></div>
+          <div class="tt-flas"></div>
+        </div></div>
+      </div></div>
+      <div class="tara-alt"><span data-i="0" data-en="On your shelf">Rafında</span><span data-i="1" data-en="Lent out">Ödünçte</span><span data-i="2" data-en="On your wish list">İstek listende</span></div>
+    </div>
     <ul class="madde">
       <li data-en="&lt;b&gt;“Do I own this?”&lt;/b&gt; Standing in a bookshop? Scan it and the app tells you if it is on your shelf, lent out, or on your wish list."><b>“Bende var mı?”</b> Kitapçıda mısın? Okut; rafında mı, ödünçte mi, istek listende mi, söylesin.</li>
       <li data-en="&lt;b&gt;Edition and printing.&lt;/b&gt; Note which edition and printing you have." style="--li:#8fb3c9"><b>Baskı ve basım.</b> Elindeki kitabın kaçıncı baskı ve basım olduğunu da yaz.</li>
@@ -320,12 +420,12 @@ footer a{color:var(--soft)}
   }
   var saved = null; try { saved = localStorage.getItem('kl-dil'); } catch (e) {}
   if (saved ? saved === 'en' : !/^tr/i.test(navigator.language || 'tr')) setLang(true);
-  btn.onclick = function () { setLang(document.documentElement.lang !== 'en'); };
+  btn.onclick = function () { setLang(document.documentElement.lang !== 'en'); if (window.__taraLang) window.__taraLang(); };
 
   // canlı oda (vapurlu oda)
   var IMGS = { 'oda-01-cagdas-1': 'oda/canli/oda-01-cagdas-1.jpg', 'oda-01-cagdas-1-plate': 'oda/canli/oda-01-cagdas-1-plate.jpg', 'ferry-sprite': 'oda/canli/ferry-sprite.png' };
   var spec = window.ROOMIMG && ROOMIMG.roman && ROOMIMG.roman[0], fx = null, mfx = null;
-  var h = new Date().getHours(), tod = h >= 6 && h < 17 ? 'g' : h >= 17 && h < 20 ? 'a' : 'n';
+  var tod = 'g';  // giriş gündüz açılır; düğmelerle akşam/gece
   var wide = matchMedia('(min-width:861px)');
   function mount() {
     if (!spec || !window.RoomFX) return;
@@ -367,6 +467,51 @@ footer a{color:var(--soft)}
   addEventListener('scroll', pick, { passive: true }); addEventListener('resize', pick); pick();
   wide.addEventListener && wide.addEventListener('change', function () { if (tabFx) { tabFx.destroy(); tabBox.remove(); tabFx = null; } cur = null; tabCur = null; pick(); });
 
+
+  // barkod sahnesi: kitap → telefon yaklaşır → okur → sonuç
+  (function () {
+    var root = document.getElementById('tara'); if (!root) return;
+    var B = [
+      { ad: 'Tutunamayanlar', yz: 'Oğuz Atay', isbn: '978-975-470-031-5', kr: '#2f4a5e', kr2: '#22384a', sb: '#e2eedd', sc: '#1d4a29',
+        tr: ['Sende var!', 'Çağdaş Türk Edebiyatı odasında, 2. rafta.', 'Tekrar alma'], en: ['You own it!', 'In the Contemporary Turkish Literature room, shelf 2.', 'No need to buy'] },
+      { ad: 'Kürk Mantolu Madonna', yz: 'Sabahattin Ali', isbn: '978-975-08-0619-6', kr: '#7a2e2a', kr2: '#5a2220', sb: '#f6e1dc', sc: '#5a1a12',
+        tr: ['Var ama dışarıda', 'Betül’de, 23 gündür.', 'Hatırlat'], en: ['Yours, but lent out', 'With Betül for 23 days.', 'Remind'] },
+      { ad: 'Yüzyıllık Yalnızlık', yz: 'Gabriel García Márquez', isbn: '978-975-07-0327-3', kr: '#c08a2e', kr2: '#8a6020', sb: '#f8ebd2', sc: '#6b4210',
+        tr: ['Sende yok', 'Ama istek listende. Gönül rahatlığıyla al!', 'Kitaplığa ekle'], en: ['Not yours yet', 'But it is on your wish list. Go ahead!', 'Add to library'] }
+    ];
+    function bars(seed) { var x = 0, h = 0, out = ''; for (var i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+      out += '<rect x="0" y="0" width="1.6" height="40"/><rect x="3" y="0" width="1.2" height="40"/>'; x = 6;
+      while (x < 94) { h = (h * 1103515245 + 12345) >>> 0; var w = 0.8 + (h % 4) * 0.7; out += '<rect x="' + x.toFixed(1) + '" y="0" width="' + w.toFixed(1) + '" height="40"/>'; x += w + 0.8 + ((h >> 5) % 3) * 0.7; }
+      return out + '<rect x="96" y="0" width="1.2" height="40"/><rect x="98.4" y="0" width="1.6" height="40"/>'; }
+    var q = function (s) { return root.querySelector(s); }, tags = root.querySelectorAll('.tara-alt span'), i = 0, T = [];
+    function fit() { var w = root.clientWidth, s = Math.min(1, w / 600); root.style.setProperty('--ts', s); root.style.setProperty('--th', Math.round(420 * s) + 'px'); }
+    fit(); addEventListener('resize', fit);
+    function later(f, ms) { T.push(setTimeout(f, ms)); }
+    function show(k) {
+      T.forEach(clearTimeout); T = []; i = k; var b = B[k], en = document.documentElement.lang === 'en', r = en ? b.en : b.tr;
+      root.classList.remove('yak', 'tar', 'bul');
+      root.style.setProperty('--kr', b.kr); root.style.setProperty('--kr2', b.kr2); root.style.setProperty('--sb', b.sb); root.style.setProperty('--sc', b.sc);
+      q('.tk-ad').textContent = b.ad; q('.tk-yz').textContent = b.yz; q('.tk-bar small').textContent = 'ISBN ' + b.isbn;
+      var svg = bars(b.isbn); root.querySelectorAll('svg').forEach(function (s) { s.innerHTML = svg; });
+      q('.tt-kart b').textContent = r[0]; q('.tt-kart .a').textContent = b.ad; q('.tt-kart .s').textContent = r[1]; q('.tt-kart .d').textContent = r[2];
+      tags.forEach(function (t, n) { t.classList.toggle('on', n === k); });
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('yak', 'bul'); return; }
+      later(function () { root.classList.add('yak'); }, 500);
+      later(function () { root.classList.add('tar'); }, 1600);
+      later(function () { root.classList.add('bul'); }, 2800);
+      later(function () { root.classList.remove('yak', 'tar', 'bul'); }, 6200);
+      later(function () { show((k + 1) % B.length); }, 7200);
+    }
+    tags.forEach(function (t, n) { t.style.cursor = 'pointer'; t.addEventListener('click', function () { show(n); }); });
+    var started = false, io = new IntersectionObserver(function (es) { if (es[0].isIntersecting && !started) { started = true; show(0); } }, { threshold: .3 }); io.observe(root);
+    show.ref = show; window.__taraLang = function () { if (started) show(i); };
+  })();
+
+  // açık / koyu tema
+  var tb = document.getElementById('tema');
+  function temaYaz() { var ac = document.documentElement.dataset.tema === 'acik'; tb.innerHTML = ac ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>' : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>'; tb.title = ac ? 'Koyu tema' : 'Açık tema'; }
+  tb.onclick = function () { var t = document.documentElement.dataset.tema === 'acik' ? 'koyu' : 'acik'; document.documentElement.dataset.tema = t; try { localStorage.setItem('kl-tema', t); } catch (e) {} temaYaz(); };
+  temaYaz();
   // arkada ışıkta uçuşan toz
   var cv = document.getElementById('toz'), c = cv.getContext('2d'), P = [], still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function size() { var d = Math.min(2, devicePixelRatio || 1); cv.width = innerWidth * d; cv.height = innerHeight * d; c.setTransform(d, 0, 0, d, 0, 0); }
@@ -375,7 +520,7 @@ footer a{color:var(--soft)}
   (function loop(t) {
     c.clearRect(0, 0, innerWidth, innerHeight);
     P.forEach(function (q) { if (!still) { q.y -= .00018 * q.s; q.x += Math.sin(t / 2200 + q.p) * .00025; if (q.y < -.02) { q.y = 1.02; q.x = Math.random(); } }
-      var a = .25 + .3 * Math.sin(t / 900 * q.s + q.p); if (a <= 0) return; c.fillStyle = 'rgba(255,228,190,' + a + ')'; c.beginPath(); c.arc(q.x * innerWidth, q.y * innerHeight, q.r, 0, 7); c.fill(); });
+      var a = .25 + .3 * Math.sin(t / 900 * q.s + q.p); if (a <= 0) return; c.fillStyle = document.documentElement.dataset.tema === 'acik' ? 'rgba(176,112,52,' + a * .55 + ')' : 'rgba(255,228,190,' + a + ')'; c.beginPath(); c.arc(q.x * innerWidth, q.y * innerHeight, q.r, 0, 7); c.fill(); });
     requestAnimationFrame(loop);
   })(0);
 })();
