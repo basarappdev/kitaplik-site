@@ -31,6 +31,7 @@ a{color:var(--acc)}
 .sahne{position:fixed;inset:0;z-index:0;overflow:hidden}
 .kat{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
 .kat.on{opacity:1}
+@media (min-width:861px){.kat::after{display:none}.kat::before{filter:blur(70px) brightness(.36) saturate(1.15)}}
 .kat::before,.kat::after{content:"";position:absolute;background-image:var(--img);background-repeat:no-repeat}
 /* yanları dolduran yumuşak, bulanık kopya */
 .kat::before{inset:-60px;background-size:cover;background-position:center;filter:blur(34px) brightness(.5) saturate(1.1)}
@@ -48,10 +49,18 @@ a{color:var(--acc)}
 .dil{font:600 14px Onest,sans-serif;color:var(--ink);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 /* düzen: solda yazı, sağda sabit telefon */
 main{position:relative;z-index:2}
-.duzen{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:56px;max-width:1180px;margin:0 auto;padding:0 32px}
+.duzen{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;max-width:1480px;margin:0 auto;padding:0 32px}
 .akis{min-width:0}
 .yan{position:relative}
-.telkap{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding-top:40px}
+.telkap{position:sticky;top:0;height:100vh;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;padding-top:46px}
+/* canlı oda tablosu: odanın tamamı, büyütülmeden, hareketli */
+.tablo{position:relative;height:calc(100vh - 110px);aspect-ratio:1100/2317;border-radius:22px;box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 0 1px rgba(255,236,210,.14),0 0 0 9px rgba(28,18,10,.92),0 0 0 10px rgba(255,236,210,.1)}
+.tablo-ic{position:absolute;inset:0;border-radius:22px;overflow:hidden;background:#120b06}
+.msahne{display:none}
+.tkat{position:absolute;top:0;left:0;right:0;bottom:0;opacity:0;transition:opacity 1.1s ease}
+.tkat.on{opacity:1}
+.tablo .saatler{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:4}
+.telkap .tel{margin-left:-70px;margin-top:150px;z-index:3;width:min(330px,calc((100vh - 260px) * 390 / 844))}
 .tel{position:relative;width:min(360px,calc((100vh - 150px) * 390 / 844));aspect-ratio:390/844;border-radius:52px;padding:12px;background:linear-gradient(145deg,#2c2118,#0e0905);box-shadow:0 40px 90px rgba(0,0,0,.65),inset 0 0 0 1.5px rgba(255,255,255,.12)}
 .ekran{position:relative;width:100%;height:100%;border-radius:41px;overflow:hidden;background:#000}
 .ekran img,.ekran .canli{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
@@ -67,6 +76,9 @@ main{position:relative;z-index:2}
 .kahraman{min-height:100vh;padding-top:140px}
 .etiket{display:inline-flex;align-items:center;gap:8px;font:600 12.5px Onest,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
 .etiket::before{content:"";width:22px;height:1.5px;background:currentColor}
+.kart{background:rgba(20,12,7,.66);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line);border-radius:28px;padding:34px 38px 34px;max-width:660px;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.kart .giris{color:var(--ink);opacity:.92}
+.bolum h2,.bolum>p{text-shadow:0 1px 18px rgba(0,0,0,.75)}
 .kahraman h1{font-size:clamp(52px,8vw,96px);letter-spacing:-.01em}
 .slogan{font-family:Gloock,serif;font-size:clamp(26px,3.4vw,38px);color:var(--acc);margin:10px 0 20px;line-height:1.15}
 .giris{font-size:19px;color:var(--soft);max-width:560px;margin:0 0 28px}
@@ -104,6 +116,22 @@ footer a{color:var(--soft)}
  .bolum{min-height:auto;padding:84px 0 40px}
  .kahraman{min-height:100svh;padding-top:110px;justify-content:flex-end;padding-bottom:60px}
  .mtel{display:block;margin:26px auto 6px;width:min(78vw,320px)}
+ .kart{padding:24px 20px 24px;border-radius:22px}
+ /* telefonda: arka plan uygulamadaki gibi canlı oda; ekranlar çerçevesiz, uygulamanın kendisi gibi */
+ .msahne{display:block;position:absolute;inset:0;z-index:0}
+ .kat{display:none}
+ .perde{background:linear-gradient(180deg,rgba(14,9,5,.30),rgba(14,9,5,.55) 45%,rgba(14,9,5,.82))!important}
+ .mtel .tel{width:100%;padding:0;background:none;border-radius:30px;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,236,210,.14)}
+ .mtel .ekran{border-radius:30px}
+ .mtel .cenk{display:none}
+ .kahraman .mtel .tel{display:none}
+ .kahraman .mtel{margin-top:18px}
+ .kahraman .kart{padding:20px 18px;background:rgba(20,12,7,.72)}
+ .kahraman h1{font-size:46px}
+ .kahraman .slogan{font-size:24px;margin:6px 0 12px}
+ .kahraman .giris{font-size:16px!important;margin-bottom:16px}
+ .kahraman .rozetler{gap:6px;margin-bottom:18px}.kahraman .rozet{font-size:13px;padding:6px 11px}
+ .kahraman .etiket{margin-bottom:10px}
  .mtel .tel{width:100%;border-radius:44px;padding:10px}.mtel .ekran{border-radius:35px}.mtel .cenk{width:90px;height:26px;top:8px}
  .mtel .ekran img{opacity:1}
  .farklar{grid-template-columns:1fr}
@@ -124,6 +152,7 @@ footer a{color:var(--soft)}
   <div class="kat" data-k="odunc" data-img="oda/oda-11-odunc-1.jpg"></div>
   <div class="kat" data-k="tasavvuf" data-img="oda/oda-05-tasavvuf-1.jpg"></div>
   <div class="kat" data-k="bos" data-img="oda/oda-12-bos-1.jpg"></div>
+  <div class="msahne" id="msahne"></div>
   <div class="perde"></div>
   <canvas id="toz"></canvas>
 </div>
@@ -138,6 +167,7 @@ footer a{color:var(--soft)}
 <div class="akis">
 
   <section class="bolum kahraman" data-oda="cagdas" data-ek="canli">
+    <div class="kart">
     <span class="etiket" data-en="A home library app">Ev kütüphanesi uygulaması</span>
     <h1>Başar! <span data-en="Library">Kitaplık</span></h1>
     <p class="slogan" data-en="A home for your books.">Kitapların için bir ev.</p>
@@ -149,6 +179,7 @@ footer a{color:var(--soft)}
       <span class="rozet" data-en="Turkish and English">Türkçe ve İngilizce</span>
     </div>
     <span class="magaza"><small data-en="Coming soon">Yakında</small><b>App Store</b></span>
+    </div>
     <div class="mtel"><div class="tel"><div class="cenk"></div><div class="ekran" id="mcanli"></div></div>
       <div class="saatler m" id="saatlerM"><button data-t="g" data-en="Day">Gündüz</button><button data-t="a" data-en="Evening">Akşam</button><button data-t="n" data-en="Night">Gece</button></div></div>
     <a class="kaydir" href="#odalar"><i></i><span data-en="Scroll and walk through the rooms">Kaydır, odaları gez</span></a>
@@ -250,7 +281,7 @@ footer a{color:var(--soft)}
 
 </div>
 <aside class="yan" aria-hidden="true">
-  <div class="telkap"><div class="tel"><div class="cenk"></div>
+  <div class="telkap"><div class="tablo"><div class="tablo-ic" id="tablo"></div><div class="saatler" id="saatler"><button data-t="g" data-en="Day">Gündüz</button><button data-t="a" data-en="Evening">Akşam</button><button data-t="n" data-en="Night">Gece</button></div></div><div class="tel"><div class="cenk"></div>
     <div class="ekran" id="ekran">
       <div class="canli on" data-ek="canli" id="canli"></div>
       <img data-ek="oda-gece" src="ek/oda-gece_tr.jpg" data-src-en="ek/oda-gece_en.jpg" alt="">
@@ -262,7 +293,6 @@ footer a{color:var(--soft)}
       <img data-ek="yazi" src="ek/yazi_tr.jpg" data-src-en="ek/yazi_en.jpg" alt="">
       <img data-ek="intro" src="ek/intro_tr.jpg" data-src-en="ek/intro_en.jpg" alt="">
     </div></div>
-    <div class="saatler" id="saatler"><button data-t="g" data-en="Day">Gündüz</button><button data-t="a" data-en="Evening">Akşam</button><button data-t="n" data-en="Night">Gece</button></div>
   </div>
 </aside>
 </div>
@@ -299,14 +329,25 @@ footer a{color:var(--soft)}
   var wide = matchMedia('(min-width:861px)');
   function mount() {
     if (!spec || !window.RoomFX) return;
-    if (wide.matches && !fx) { fx = new RoomFX(document.getElementById('canli'), spec, IMGS); fx.setTod(tod); }
-    if (!wide.matches && !mfx) { mfx = new RoomFX(document.getElementById('mcanli'), spec, IMGS); mfx.setTod(tod); }
   }
   mount(); wide.addEventListener && wide.addEventListener('change', mount);
-  function setTod(t) { tod = t; if (fx) fx.setTod(t); if (mfx) mfx.setTod(t); document.querySelectorAll('.saatler button').forEach(function (b) { b.classList.toggle('on', b.dataset.t === t); }); }
+  function setTod(t) { tod = t; if (fx) fx.setTod(t); if (tabFx) tabFx.setTod(t); if (mfx) mfx.setTod(t); document.querySelectorAll('.saatler button').forEach(function (b) { b.classList.toggle('on', b.dataset.t === t); }); }
   document.querySelectorAll('.saatler').forEach(function (s) { s.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) setTod(b.dataset.t); }); });
   setTod(tod);
 
+  // geniş ekranda: odanın tamamı canlı tablo olarak
+  var TAB = { cagdas: ['roman', 0], korku: ['korku', 0], tarih: ['tarih', 0], bilimkurgu: ['bilimkurgu', 0], deneme: ['deneme', 1], siir: ['siir', 0], odunc: ['odunc', 0], tasavvuf: ['tasavvuf', 0], bos: ['bos', 0] };
+  var tabHost = document.getElementById('tablo'), mHost = document.getElementById('msahne'), tabCur = null, tabFx = null, tabBox = null;
+  function tablo(o) {
+    if (!window.RoomFX || !window.ROOMIMG || o === tabCur || !TAB[o]) return;
+    var t = TAB[o], sp = ROOMIMG[t[0]] && ROOMIMG[t[0]][t[1]]; if (!sp) return; tabCur = o;
+    var imgs = o === 'cagdas' ? IMGS : {}; if (!imgs[sp.id]) imgs[sp.id] = 'oda/' + sp.id + '.jpg';
+    var box = document.createElement('div'); box.className = 'tkat'; (wide.matches ? tabHost : mHost).appendChild(box);
+    var f = new RoomFX(box, sp, imgs); f.setTod(tod);
+    setTimeout(function () { box.classList.add('on'); }, 60);
+    var old = tabFx, oldBox = tabBox; tabFx = f; tabBox = box;
+    if (old) setTimeout(function () { old.destroy(); oldBox.remove(); }, 1400);
+  }
   // kaydırdıkça oda ve ekran değişir
   var kats = {}, order = []; document.querySelectorAll('.kat').forEach(function (k) { kats[k.dataset.k] = k; order.push(k.dataset.k); });
   function load(n) { var k = kats[n]; if (k && !k.style.getPropertyValue('--img')) k.style.setProperty('--img', 'url(' + k.dataset.img + ')'); }
@@ -315,15 +356,16 @@ footer a{color:var(--soft)}
   var saat = document.getElementById('saatler'), cur = null;
   function show(sec) {
     if (sec === cur) return; cur = sec;
-    var o = sec.dataset.oda, k = sec.dataset.ek;
+    var o = sec.dataset.oda, k = sec.dataset.ek; if (wide.matches && k === 'canli') k = 'intro';
+    tablo(o);
     load(o); var i = order.indexOf(o); load(order[i + 1]); load(order[i - 1]);
     for (var n in kats) kats[n].classList.toggle('on', n === o);
     for (var m in shots) shots[m].classList.toggle('on', m === k);
-    saat.classList.toggle('gizli', k !== 'canli');
   }
   var secs = [].slice.call(document.querySelectorAll('.bolum'));
   function pick() { var mid = innerHeight * .5, best = secs[0]; secs.forEach(function (s) { var r = s.getBoundingClientRect(); if (r.top < mid) best = s; }); show(best); }
   addEventListener('scroll', pick, { passive: true }); addEventListener('resize', pick); pick();
+  wide.addEventListener && wide.addEventListener('change', function () { if (tabFx) { tabFx.destroy(); tabBox.remove(); tabFx = null; } cur = null; tabCur = null; pick(); });
 
   // arkada ışıkta uçuşan toz
   var cv = document.getElementById('toz'), c = cv.getContext('2d'), P = [], still = matchMedia('(prefers-reduced-motion: reduce)').matches;
