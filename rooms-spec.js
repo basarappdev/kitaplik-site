@@ -1,0 +1,91 @@
+/* Oda resimleri. Bütün sayılar resmin yüzdesi (x: genişlik, y: yükseklik; r ve s: genişliğin yüzdesi).
+   bc: kitaplığın yeri · warp: nefes/baş/perde · lights: odayı aydınlatan ışıklar · windows: gece/akşam rengi alan camlar
+   fx: alev, mum (b: mumun dibi), toz, buhar, yağmur, yıldız, kuş... · sprite: hareketli parça (vapur) */
+(function () {
+  var HEAD = function (x, y, T, s) { s = s || 1; return { c: [x, y], r: [6.5 * s, 3.6 * s], a: [1.15 * s, .4 * s], T: T || 6.5 }; };
+  var BREATH = function (x, y, T, s) { s = s || 1; return { c: [x, y], r: [11 * s, 7 * s], a: [0, -.75 * s], T: T || 4.4 }; };
+  var SWAY = function (x, y, rx, ry, ax, T) { return { c: [x, y], r: [rx, ry], a: [ax, 0], T: T || 5, k: 1 }; };
+  var PEN = function (x, y) { return { c: [x, y], r: [3.5, 2.4], a: [.55, .3], T: .9 }; };
+  var CANDLE = function (bx, by, s) { return { t: 'candle', b: [bx, by], s: s || 1.4 }; };
+  var CL = function (bx, by, s, r, i) { s = s || 1.4; return { p: [bx, by - s * 3.4 / 2.106], r: r || 26, i: i || 1.15, c: 'candle', kind: 'candle', fl: .22 }; };
+  var LAMP = function (x, y, r, i, c, fl) { return { p: [x, y], r: r || 30, i: i || 1.2, c: c || 'lamp', kind: 'lamp', fl: fl == null ? .08 : fl }; };
+  var MOON = function (x, y, r, i) { return { p: [x, y], r: r || 30, i: i || .35, c: 'moon', tod: 'n' }; };
+  var DUSK = function (x, y, r, i, c) { return { p: [x, y], r: r || 38, i: i || .45, c: c || 'sunset', tod: 'a' }; };
+  window.ROOMIMG = {
+    roman: [{ id: 'oda-01-cagdas-1', plate: 'oda-01-cagdas-1-plate', bc: [44, 16, 56, 60],
+      sprite: { img: 'ferry-sprite', box: [5.319, 50.884, 28.989, 13.131], glass: [[10.638, 50.884, 7.447, 13.131], [20.346, 50.884, 8.644, 13.131]], ax: 2.8, ay: .1, T: 20 },
+      warp: [HEAD(75, 51, 7), BREATH(73, 65), SWAY(5, 38, 6, 30, 1.2, 5.2), SWAY(35, 38, 5, 30, -1, 6.1)],
+      windows: [[10.4, 5, 19.4, 74]],
+      lights: [CL(24, 78.6, 1.4, 36, 1.35), DUSK(20, 42, 40, .5), MOON(20, 40, 28, .3), { p: [6, 72], r: 7, i: .5, c: 'lamp', kind: 'lamp', fl: .03 }],
+      fx: [{ t: 'dust', r: [8, 8, 26, 70], n: 55 }, { t: 'shimmer', r: [10.5, 63.6, 19, 3.5], on: 'g' }, { t: 'steam', p: [27, 88.5], s: 1.1 },
+        { t: 'portholes', pts: [[12.6, 58.9], [14.3, 58.9], [22.6, 59.3], [24.6, 59.3], [26.6, 59.3], [28.3, 59.3]] }, { t: 'nightstars', r: [11, 6, 18, 40], n: 14 }, CANDLE(24, 78.6, 1.4)] }],
+    klasik: [{ id: 'oda-02-klasikler-1', bc: [19, 24, 62, 47],
+      warp: [HEAD(84, 42, 6, .8), BREATH(83, 54)],
+      lights: [LAMP(11.2, 40.5, 38, 1.35), CL(92, 63.2, 1.3, 24)],
+      fx: [{ t: 'flame', p: [11.2, 41.2], s: .9 }, { t: 'dust', r: [0, 10, 100, 55], n: 45 }, CANDLE(92, 63.2, 1.3)] }],
+    korku: [{ id: 'oda-03-korku-1', bc: [5, 36, 60, 25],
+      warp: [HEAD(79, 43, 7, .8), BREATH(79, 55, 5)],
+      windows: [[46, 13, 18, 14]],
+      lights: [LAMP(56.8, 47, 32, 1.4, 'candle', .25), MOON(55, 24, 36, .45)],
+      fx: [{ t: 'fog', r: [0, 22, 100, 26] }, { t: 'lightning' }, { t: 'flame', p: [56.8, 47.6], s: .8, always: 1 }] },
+    { id: 'oda-03-korku-2', bc: [14, 43, 67, 23],
+      warp: [HEAD(25, 49, 7, .8), BREATH(26, 60, 5)],
+      windows: [[41, 21, 21, 22]],
+      lights: [LAMP(42.5, 52, 32, 1.4, 'candle', .25), MOON(52, 30, 36, .45)],
+      fx: [{ t: 'fog', r: [0, 18, 100, 30] }, { t: 'lightning' }, { t: 'flame', p: [42.5, 52.6], s: .8, always: 1 }] }],
+    polisiye: [{ id: 'oda-04-polisiye-1', bc: [25, 15, 41, 41],
+      warp: [HEAD(57.5, 39, 7), BREATH(57, 52), HEAD(77.5, 35, 8.5, .8), BREATH(80, 45, 5)],
+      windows: [[0, 10, 23, 35], [72, 10, 28, 30]],
+      lights: [LAMP(21.7, 48, 30, 1.3, [1, .88, .58], .02), { p: [86, 24], r: 32, i: .75, c: 'neon', neon: 1 }, MOON(12, 25, 22, .25)],
+      fx: [{ t: 'glass', r: [1, 12, 21, 32], n: 16 }, { t: 'glass', r: [84, 11, 15, 19], n: 9 }] }],
+    tasavvuf: [{ id: 'oda-05-tasavvuf-1', bc: [22.5, 25.5, 43.5, 36.5],
+      warp: [HEAD(54, 61.5, 7, .8), BREATH(54, 70, 4.8)],
+      windows: [[74, 27, 26, 32]],
+      lights: [LAMP(14.7, 68, 24, 1.2, 'candle', .2), LAMP(5.1, 79, 24, 1.2, 'candle', .2), CL(90, 77.5, 1.2, 24), DUSK(86, 43, 42, .55, 'pink'), MOON(86, 40, 32, .3)],
+      fx: [{ t: 'sun', r: [74, 27, 26, 32], c: '255,150,150' }, { t: 'birds', r: [74, 27, 26, 25] }, { t: 'flame', p: [14.7, 68.6], s: .75 }, { t: 'flame', p: [5.1, 79.4], s: .75 }, { t: 'steam', p: [97.5, 77], s: .9 }, { t: 'dust', r: [50, 26, 50, 45], n: 35 }, CANDLE(90, 77.5, 1.2), { t: 'nightstars', r: [75, 28, 24, 16], n: 10 }] }],
+    deneme: [{ id: 'oda-06-deneme-1', bc: [30, 25.5, 56, 42.5],
+      warp: [HEAD(57.5, 51.5, 7), BREATH(57, 62), SWAY(20, 35, 4.5, 15, 1.1, 5.5)],
+      windows: [[0, 20, 20, 32]],
+      lights: [CL(12, 54.3, 1.3, 26), CL(86, 68.5, 1.3, 26), DUSK(10, 35, 38, .5), MOON(10, 33, 26, .3)],
+      fx: [{ t: 'sun', r: [0, 20, 22, 32] }, { t: 'dust', r: [0, 20, 45, 45], n: 45 }, { t: 'steam', p: [96, 66], s: .9 }, CANDLE(12, 54.3, 1.3), CANDLE(86, 68.5, 1.3), { t: 'nightstars', r: [1, 21, 17, 26], n: 8 }] },
+    { id: 'oda-06-deneme-2', bc: [37.5, 20, 55, 40],
+      warp: [HEAD(65, 50, 7), BREATH(60, 60), PEN(74, 63.5), SWAY(25, 34, 4, 14, 1, 5.5)],
+      windows: [[0, 22, 22, 30]],
+      lights: [CL(15, 56.5, 1.3, 26), CL(83, 65.5, 1.3, 26), DUSK(10, 36, 38, .5), MOON(10, 35, 26, .3)],
+      fx: [{ t: 'sun', r: [0, 22, 22, 30] }, { t: 'dust', r: [0, 20, 45, 45], n: 45 }, { t: 'steam', p: [90, 63.5], s: .9 }, CANDLE(15, 56.5, 1.3), CANDLE(83, 65.5, 1.3), { t: 'nightstars', r: [1, 23, 18, 24], n: 8 }] }],
+    bilimkurgu: [{ id: 'oda-07-bilimkurgu-1', bc: [9, 31.5, 50, 44.5],
+      warp: [HEAD(70, 54, 7, .8), BREATH(70, 64)],
+      lights: [{ p: [91, 59], r: 26, i: .9, c: 'cyan', fl: .05 }, { p: [72.5, 36], r: 40, i: .45, c: 'moon' }, { p: [60, 48], r: 14, i: .35, c: 'lamp', kind: 'lamp' }],
+      fx: [{ t: 'stars', round: 1, c: [72.5, 35.6], rr: 22, n: 55, every: [2500, 5000] }, { t: 'blink', pts: [[85, 59], [89, 60], [93, 58.5], [97, 60]] }] }],
+    tarih: [{ id: 'oda-08-tarih-1', bc: [15, 28, 72.5, 54],
+      warp: [HEAD(29, 45.7, 7, .9), BREATH(29, 58)],
+      lights: [LAMP(81.4, 25, 34, 1.3), LAMP(97, 62.5, 28, 1.15)],
+      fx: [{ t: 'flame', p: [81.4, 25.6], s: .75 }, { t: 'flame', p: [97, 63], s: .65 }, { t: 'sand', p: [92.5, 31.5], h: 2 }, { t: 'dust', r: [0, 18, 100, 55], n: 50 }] }],
+    siir: [{ id: 'oda-09-siir-1', bc: [14, 32.6, 62, 27.4],
+      warp: [HEAD(54, 61.7, 7, .8), BREATH(54, 72, 5)],
+      lights: [[4, 62], [16, 61.5], [30, 61], [42, 59], [54, 56.5], [63, 54], [73, 51.5], [82, 49.5], [92, 47]].map(function (q) { return { p: q, r: 9, i: .6, c: 'lamp', kind: 'lamp', fl: .1 }; }),
+      fx: [{ t: 'bulbs', pts: [[4, 62], [10, 61.8], [16, 61.5], [23, 61.5], [30, 61], [42, 59], [54, 56.5], [63, 54], [73, 51.5], [82, 49.5], [92, 47]] }, { t: 'stars', r: [0, 0, 100, 13], n: 45, every: [1800, 3800] }] },
+    { id: 'oda-09-siir-2', bc: [17.5, 40, 66.5, 33],
+      warp: [HEAD(49, 72, 7, .8), BREATH(48, 82, 5)],
+      lights: [[7.5, 44.5], [18, 37], [34, 32], [45, 31], [57, 32], [67, 34], [83, 41], [90, 44], [25, 64], [50, 65], [76, 64]].map(function (q) { return { p: q, r: 9, i: .55, c: 'lamp', kind: 'lamp', fl: .1 }; }).concat([{ p: [86, 22], r: 30, i: .45, c: 'moon' }]),
+      fx: [{ t: 'bulbs', pts: [[7.5, 44.5], [12, 40], [18, 37], [25, 34.5], [34, 32], [45, 31], [57, 32], [67, 34], [75, 37.5], [83, 41], [90, 44], [25, 64], [35, 65], [50, 65], [64, 65], [76, 64]] }, { t: 'stars', r: [70, 18, 26, 11], n: 18, every: [2500, 5000] }] }],
+    cocuk: [{ id: 'oda-10-cocuk-1', bc: [4, 35, 66, 38.5],
+      warp: [SWAY(84, 26, 3, 7, 1.4, 3.4), SWAY(81, 34, 3, 7, -1.2, 4.1), SWAY(96, 38, 3, 7, 1.2, 3.8), SWAY(89, 31, 2.5, 6, 1, 4.6), SWAY(77, 50, 6, 3, .6, 3)],
+      lights: [{ p: [85, 66], r: 32, i: 1.1, c: [1, .72, .55], tod: 'an', fl: .04 }, { p: [86, 33], r: 14, i: .5, c: [1, .9, .6], tod: 'an' }],
+      fx: [{ t: 'sparkle', pts: [[84, 29], [81, 38], [96, 42], [89, 35]] }, { t: 'dust', r: [40, 25, 60, 45], n: 40 }] }],
+    odunc: [{ id: 'oda-11-odunc-1', bc: [31, 27, 41.5, 41],
+      warp: [SWAY(25, 47, 3, 11, 1.1, 5)],
+      lights: [CL(22, 63.6, 1.3, 28), { p: [89, 48], r: 36, i: .8, c: 'lamp', tod: 'an' }, { p: [18, 34], r: 10, i: .4, c: 'lamp', tod: 'an' }],
+      fx: [{ t: 'sun', r: [77.5, 29, 22.5, 41] }, { t: 'dust', r: [55, 28, 45, 50], n: 50 }, CANDLE(22, 63.6, 1.3)] }],
+    bos: [{ id: 'oda-12-bos-1', bc: [10, 39, 49, 36],
+      warp: [SWAY(71, 60, 5, 6, .9, 6)],
+      windows: [[76, 30, 24, 29]],
+      lights: [CL(50, 39.6, 1.3, 30), DUSK(86, 44, 40, .5), MOON(86, 42, 30, .35)],
+      fx: [{ t: 'sun', r: [76, 30, 24, 29] }, { t: 'dust', r: [45, 28, 55, 55], n: 50 }, CANDLE(50, 39.6, 1.3), { t: 'nightstars', r: [77, 31, 22, 25], n: 10 }] },
+    { id: 'oda-12-bos-2', bc: [25, 32, 45, 28],
+      warp: [SWAY(76, 49, 3, 5, .9, 6)],
+      windows: [[86, 30, 14, 22]],
+      lights: [CL(60, 32.3, 1.25, 30), DUSK(92, 40, 36, .5), MOON(92, 38, 28, .35)],
+      fx: [{ t: 'sun', r: [86, 30, 14, 22] }, { t: 'dust', r: [45, 28, 55, 50], n: 45 }, CANDLE(60, 32.3, 1.25), { t: 'nightstars', r: [87, 31, 12, 20], n: 6 }] }]
+  };
+})();
